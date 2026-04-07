@@ -1,36 +1,135 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# cmlabs-frontend-fulltime-test
 
-## Getting Started
+Project ini menggunakan Next.js 16, React 19, TypeScript, dan Tailwind CSS 4.
 
-First, run the development server:
+## Demo
+
+https://cmlabs-frontend-fulltime-test-l2c2t5pkc-dikapratanas-projects.vercel.app/
+
+## Spesifikasi Environment
+
+Supaya aplikasi berjalan aman di lokal, gunakan:
+
+- Node.js `>= 20.9.0`
+- npm `>= 10`
+
+Rekomendasi paling aman:
+
+- Node.js `20 LTS` atau `22 LTS`
+- npm bawaan dari versi Node tersebut
+
+Catatan:
+
+- Repository ini memakai `package-lock.json`, jadi package manager yang disarankan adalah `npm`.
+- Requirement minimal `Node.js 20.9+` mengikuti kebutuhan Next.js 16 yang dipakai project ini.
+
+## Environment Variable
+
+Buat file `.env` di root project, lalu isi dengan:
+
+```env
+MEAL_DB_API_HOST=https://www.themealdb.com
+```
+
+Atau, jika ingin lebih cepat, Anda bisa rename file `.env.example` menjadi `.env`, lalu pastikan isinya tetap seperti di atas.
+
+Optional untuk metadata URL lokal:
+
+```env
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
+
+## Cara Menjalankan di Local
+
+1. Pastikan versi Node.js dan npm sudah sesuai.
+
+```bash
+node -v
+npm -v
+```
+
+2. Install dependency.
+
+```bash
+npm install
+```
+
+3. Siapkan file `.env`.
+
+Buat file `.env`, lalu isi:
+
+```env
+MEAL_DB_API_HOST=https://www.themealdb.com
+```
+
+Atau rename `.env.example` menjadi `.env`.
+
+4. Jalankan development server.
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Buka aplikasi di browser:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Langkah Aman Sampai Aplikasi Jalan
 
-## Learn More
+Ikuti checklist ini supaya setup lokal lebih aman dan minim error:
 
-To learn more about Next.js, take a look at the following resources:
+1. Gunakan Node versi LTS, jangan versi terlalu lama.
+2. Jalankan `npm install` dari root project ini.
+3. Pastikan file `.env` sudah ada sebelum menjalankan aplikasi.
+4. Biarkan `MEAL_DB_API_HOST` tetap ke `https://www.themealdb.com` jika tidak ada kebutuhan khusus.
+5. Jika port `3000` sedang dipakai, hentikan proses lama atau jalankan ulang setelah port tersedia.
+6. Setelah server aktif, cek halaman utama di browser dan pastikan data meal berhasil tampil.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Script yang Tersedia
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run dev
+npm run build
+npm run start
+npm run lint
+```
 
-## Deploy on Vercel
+Penjelasan singkat:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `npm run dev` untuk development lokal
+- `npm run build` untuk membuat build production
+- `npm run start` untuk menjalankan hasil build production
+- `npm run lint` untuk pengecekan code style dan potensi issue
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Verifikasi Production Build
+
+Kalau ingin memastikan aplikasi aman dijalankan seperti mode production, gunakan:
+
+```bash
+npm run build
+npm run start
+```
+
+Lalu buka kembali:
+
+```text
+http://localhost:3000
+```
+
+## Struktur Singkat
+
+- `app/` berisi route App Router Next.js
+- `features/` berisi modul fitur utama
+- `components/` berisi komponen reusable
+- `lib/` berisi utilitas dan helper
+
+## Troubleshooting Singkat
+
+Jika aplikasi tidak jalan di lokal:
+
+- pastikan `node -v` minimal `20.9.0`
+- hapus `node_modules`, lalu install ulang dengan `npm install`
+- cek isi `.env` dan pastikan URL valid
+- jalankan `npm run lint` untuk melihat error yang terdeteksi
